@@ -16,7 +16,6 @@ import java.time.LocalDateTime;
 @EnableWebSecurity
 @EnableOAuth2Sso
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
-
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
@@ -50,6 +49,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
             user.setLastVisit(LocalDateTime.now());
 
             return userDetailsRepo.save(user);
-        } ;
+        };
     }
 }
