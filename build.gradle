@@ -1,19 +1,29 @@
 plugins {
+    id "com.github.node-gradle.node" version "3.3.0"
     id 'org.springframework.boot' version '2.6.7'
     id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 }
+apply plugin: "com.github.node-gradle.node"
+node {    download = true }
 
 group = 'letscode'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
+sourceCompatibility = '11'
+
+task buildFront(type: YarnTask) {
+    args = ['build']
+}
+yarn_install.dependsOn(yarn_cache_clean)
+buildFront.dependsOn(yarn_install)
+processResources.dependsOn(buildFront)
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-//    implementation 'org.springframework.session:spring-session-jdbc'
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     developmentOnly 'org.springframework.boot:spring-boot-devtools'
@@ -36,6 +46,3 @@ dependencies {
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
-tasks.named('test') {
-    useJUnitPlatform()
-}
