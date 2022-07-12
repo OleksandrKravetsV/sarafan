@@ -19,8 +19,16 @@ yarn_install.dependsOn(yarn_cache_clean)
 buildFront.dependsOn(yarn_install)
 processResources.dependsOn(buildFront)
 
+jar {
+    enabled = false
+}
+
 repositories {
     mavenCentral()
+}
+
+node {
+    download = true
 }
 
 dependencies {
