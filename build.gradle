@@ -9,7 +9,7 @@ node {    download = true }
 
 group = 'letscode'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '17'
+//sourceCompatibility = '17'
 sourceCompatibility = '11'
 
 task buildFront(type: YarnTask) {
